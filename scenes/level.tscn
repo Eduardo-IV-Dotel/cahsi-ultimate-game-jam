@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cyr1ajjnmsibn"]
 
-[ext_resource type="Script" uid="uid://cubkw3cvcu2yd" path="res://SimonSays.gd" id="1_u52ul"]
+[ext_resource type="Script" uid="uid://cubkw3cvcu2yd" path="res://scripts/SimonSays.gd" id="1_u52ul"]
 [ext_resource type="AudioStream" uid="uid://dxds2ws2l3h84" path="res://audios/red.ogg" id="2_0b4ue"]
 [ext_resource type="AudioStream" uid="uid://bq5irk4xse5d1" path="res://audios/blue.ogg" id="3_f2txt"]
 [ext_resource type="AudioStream" uid="uid://cf6ucba2xrcie" path="res://audios/yellow.ogg" id="4_1ainy"]
