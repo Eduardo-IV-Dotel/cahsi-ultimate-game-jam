@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cyr1ajjnmsibn"]
+[gd_scene load_steps=0 format=4 uid="uid://cyr1ajjnmsibn"]
 
 [ext_resource type="Script" uid="uid://cubkw3cvcu2yd" path="res://scripts/SimonSays.gd" id="1_u52ul"]
 [ext_resource type="AudioStream" uid="uid://dxds2ws2l3h84" path="res://audios/red.ogg" id="2_0b4ue"]
