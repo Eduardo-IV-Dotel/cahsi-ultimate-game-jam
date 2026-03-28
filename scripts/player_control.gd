@@ -25,6 +25,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	batery -= drain_rate * delta
+	battery -= drain_rate * delta
 	battery = clamp(battery, 0, max_battery)
 	move_and_slide()
