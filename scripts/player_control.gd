@@ -4,8 +4,19 @@ class_name PlayerController
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var direction = 0
+var max_health = 100.0
+var health = 100.0
+var decay = 5.0
+func die():
+	print("Ya dead")
 
 func _physics_process(delta: float) -> void:
+	
+	health -= decay * delta
+	health = clamp(health, 0, max_health)
+	if health <= 0:
+		die()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
