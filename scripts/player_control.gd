@@ -7,8 +7,10 @@ var direction = 0
 var max_health = 100.0
 var health = 100.0
 var decay = 5.0
+var is_dead := false
 func die():
 	print("Ya dead")
+	is_dead = true
 
 func _physics_process(delta: float) -> void:
 	
