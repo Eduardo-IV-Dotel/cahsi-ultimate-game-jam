@@ -18,6 +18,8 @@ func charging():
 	is_charging = true
 
 func _physics_process(delta: float) -> void:
+	if is_charging:
+		health += 10
 	
 	health -= decay * delta
 	health = clamp(health, 0, max_health)
