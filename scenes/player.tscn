@@ -1,17 +1,117 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6tbujs1sbyh2"]
+[gd_scene load_steps=12 format=3 uid="uid://c6tbujs1sbyh2"]
 
-[ext_resource type="Texture2D" uid="uid://nln2y0ro7l08" path="res://sprite_sheet_1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bxfip7lsuhfqb" path="res://scripts/player_control.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://b5022481o2566" path="res://sprite/robot_bluetooth_1.png" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cxve6oqq27afq" path="res://scenes/player_animator.gd" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 
+[sub_resource type="Animation" id="Animation_qhqgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 256, 32, 32)]
+}
+
 [sub_resource type="Animation" id="Animation_g2els"]
-resource_name = "idle"
+resource_name = "idlegreen"
 step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20436694, 0.39958313),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 256, 32, 32), Rect2(32, 256, 32, 32), Rect2(64, 256, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "leftgreen"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 128, 32, 32), Rect2(32, 128, 32, 32), Rect2(64, 128, 32, 32), Rect2(96, 128, 32, 32), Rect2(32, 128, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "leftyellow"
+length = 0.75
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 160, 32, 32), Rect2(32, 160, 32, 32), Rect2(64, 160, 32, 32), Rect2(96, 160, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "leftred"
+length = 0.75
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 192, 32, 32), Rect2(32, 192, 32, 32), Rect2(64, 192, 32, 32), Rect2(96, 192, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+resource_name = "rightgreen"
+length = 0.75
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qhqgy"]
 _data = {
-&"idle": SubResource("Animation_g2els")
+&"RESET": SubResource("Animation_qhqgy"),
+&"idlegreen": SubResource("Animation_g2els"),
+&"leftgreen": SubResource("Animation_dqkch"),
+&"leftred": SubResource("Animation_tuyoq"),
+&"leftyellow": SubResource("Animation_qlg0r"),
+&"rightgreen": SubResource("Animation_fjrip")
 }
 
 [node name="player" type="CharacterBody2D"]
@@ -24,13 +124,20 @@ shape = SubResource("CapsuleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
-texture = ExtResource("1_3vyb7")
-region_enabled = true
-region_rect = Rect2(32, 0, 32, 32)
+[node name="Player animator" type="Node2D" parent="." node_paths=PackedStringArray("player_control", "animation_player", "sprite")]
+script = ExtResource("2_qhqgy")
+player_control = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+sprite = NodePath("Sprite2D")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player animator"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_qhqgy")
 }
+
+[node name="Sprite2D" type="Sprite2D" parent="Player animator"]
+position = Vector2(0, -16)
+texture = ExtResource("2_g2els")
+region_enabled = true
+region_rect = Rect2(0, 256, 32, 32)
