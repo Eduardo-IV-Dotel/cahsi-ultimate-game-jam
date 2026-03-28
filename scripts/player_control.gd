@@ -8,9 +8,14 @@ var max_health = 100.0
 var health = 100.0
 var decay = 5.0
 var is_dead := false
+var is_charging := false
+
 func die():
 	print("Ya dead")
 	is_dead = true
+func charging():
+	print("Ya charging")
+	is_charging = true
 
 func _physics_process(delta: float) -> void:
 	
@@ -25,15 +30,18 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		if is_dead == false:
+			velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("left", "right")
 	if direction:
-		velocity.x = direction * SPEED
+		if is_dead == false:
+			velocity.x = direction * SPEED
 
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if is_dead == false:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
