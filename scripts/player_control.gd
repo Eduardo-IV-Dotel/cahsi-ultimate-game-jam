@@ -14,7 +14,6 @@ func die():
 	print("Ya dead")
 	is_dead = true
 func charging():
-	print("Ya charging")
 	is_charging = true
 
 func _physics_process(delta: float) -> void:

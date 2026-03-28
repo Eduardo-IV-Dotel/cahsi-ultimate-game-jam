@@ -14,4 +14,3 @@ func _on_body_exited(body: Node2D) -> void:
 		var player = body as PlayerController
 		if player:
 			player.is_charging = false
-			print("Player left the area")
