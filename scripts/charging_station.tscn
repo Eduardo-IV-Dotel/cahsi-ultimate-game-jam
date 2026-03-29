@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cl68pfgk8ftab"]
+
+[ext_resource type="Texture2D" uid="uid://d0gfg80kxs2sr" path="res://sprite/charger.png" id="1_bffp7"]
+[ext_resource type="Script" uid="uid://do82c7fmtu3hy" path="res://area_2d.gd" id="2_mekq5"]
+[ext_resource type="PackedScene" uid="uid://cyr1ajjnmsibn" path="res://scenes/level.tscn" id="3_mekq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7liqu"]
+size = Vector2(20, 30)
+
+[node name="charging_station" type="Node2D" unique_id=622275138]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2145572012]
+position = Vector2(0, -16)
+texture = ExtResource("1_bffp7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1190215667]
+script = ExtResource("2_mekq5")
+simon_says_scene = ExtResource("3_mekq5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=202872662]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_7liqu")
