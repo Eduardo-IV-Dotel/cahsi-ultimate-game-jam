@@ -16,11 +16,7 @@ func die():
 func charging():
 	is_charging = true
 
-func die():
-	print("Ya dead")
-	is_dead = true
-func charging():
-	is_charging = true
+
 	
 func isDecaying():
 	decay = 5.0
@@ -28,6 +24,11 @@ func stopDecaying():
 	decay = 0
 	
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		velocity = Vector2.ZERO  # stop movement
+		move_and_slide()
+		return  # ← stop ALL processing when dead, no decay, no die() calls
+	
 	if is_charging:
 		health += 10
 	
@@ -51,6 +52,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		if is_dead == false:
 			velocity.x = direction * SPEED
+			
 
 	else:
 		if is_dead == false:

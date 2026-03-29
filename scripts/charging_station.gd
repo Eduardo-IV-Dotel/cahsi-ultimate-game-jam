@@ -7,6 +7,13 @@ var unlocked := false
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)  # ← add this
+
+func _on_body_exited(body: Node) -> void:
+	if body.name == "player":
+		var player = body as PlayerController
+		if player:
+			player.is_charging = false
 
 func _on_body_entered(body: Node) -> void:
 	if body.name == "player" and not triggered:
@@ -22,6 +29,7 @@ func _on_body_entered(body: Node) -> void:
 			var won: bool = await simon.get_child(0).game_loop(4)
 			simon.queue_free()
 			player.set_physics_process(true)   # ← unfreeze after
+			player.isDecaying()
 			if won:
 				unlocked = true
 				triggered = false
