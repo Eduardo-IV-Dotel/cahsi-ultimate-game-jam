@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://c0b60ptdjk7o"]
+[gd_scene load_steps=7 format=4 uid="uid://c0b60ptdjk7o"]
 
 [ext_resource type="Texture2D" uid="uid://bi2fe2d2hiqrx" path="res://sprite/monochrome_tilemap_packed.png" id="1_1gyh0"]
 [ext_resource type="PackedScene" uid="uid://c6tbujs1sbyh2" path="res://scenes/player.tscn" id="2_dgl8q"]
 [ext_resource type="PackedScene" uid="uid://cl68pfgk8ftab" path="res://scenes/charging_station.tscn" id="3_h3qae"]
+[ext_resource type="PackedScene" uid="uid://bxi0tnru2n0ny" path="res://scenes/Battery.tscn" id="4_ay52s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dgl8q"]
 texture = ExtResource("1_1gyh0")
@@ -446,3 +447,12 @@ position = Vector2(-469, 174)
 
 [node name="charging_station2" parent="." instance=ExtResource("3_h3qae")]
 position = Vector2(304, 174)
+
+[node name="Battery" parent="." instance=ExtResource("4_ay52s")]
+position = Vector2(223, -1)
+
+[node name="Battery2" parent="." instance=ExtResource("4_ay52s")]
+position = Vector2(-419, -89)
+
+[node name="Battery3" parent="." instance=ExtResource("4_ay52s")]
+position = Vector2(25, 73)

@@ -22,7 +22,6 @@ func _on_body_entered(body: Node) -> void:
 			triggered = true
 			player.decay = 0.0
 			player.is_dead = false
-			player.health = player.max_health  # ← give full health before starting
 			player.set_physics_process(false)  # ← freeze player completely
 			var simon = simon_says_scene.instantiate()
 			get_tree().root.add_child(simon)
