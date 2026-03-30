@@ -30,6 +30,8 @@ func stopDecaying():
 	decay = 0
 	
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("menu"):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	if is_dead:
 		velocity = Vector2.ZERO  # stop movement
 		move_and_slide()
