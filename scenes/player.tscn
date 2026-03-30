@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6tbujs1sbyh2"]
+[gd_scene format=3 uid="uid://c6tbujs1sbyh2"]
 
 [ext_resource type="Script" uid="uid://bxfip7lsuhfqb" path="res://scripts/player_control.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b5022481o2566" path="res://sprite/robot_bluetooth_1.png" id="2_g2els"]
-[ext_resource type="Script" uid="uid://cxve6oqq27afq" path="res://scripts/player_animator.gd" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 
@@ -11,24 +10,24 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 288, 32, 32)]
+"values": [Rect2(0, 256, 32, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_ur7pv"]
-resource_name = "dead"
-step = 0.5
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "death"
+step = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
@@ -38,140 +37,78 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_g2els"]
-resource_name = "idle_green"
-step = 0.5
+resource_name = "idle"
+length = 2.0
+step = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20131668, 0.63750285, 1.0462368, 1.604433, 1.9247096),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 256, 32, 32), Rect2(0, 256, 32, 32), Rect2(0, 256, 32, 32), Rect2(0, 256, 32, 32), Rect2(0, 256, 32, 32), Rect2(0, 256, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "left"
+step = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.20436694, 0.39958313),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.25012073, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Rect2(0, 256, 32, 32), Rect2(32, 256, 32, 32), Rect2(64, 256, 32, 32)]
+"values": [Rect2(0, 128, 32, 32), Rect2(32, 128, 32, 32), Rect2(64, 128, 32, 32), Rect2(96, 128, 32, 32), Rect2(0, 128, 32, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_smehm"]
-resource_name = "idle_red"
-step = 0.5
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "right"
+step = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 320, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_fjrip"]
-resource_name = "idle_yellow"
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 288, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_dqkch"]
-resource_name = "move_green"
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Rect2(0, 128, 32, 32), Rect2(32, 128, 32, 32), Rect2(64, 128, 32, 32), Rect2(96, 128, 32, 32), Rect2(32, 128, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_tuyoq"]
-resource_name = "move_red"
-length = 0.75
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Rect2(0, 192, 32, 32), Rect2(32, 192, 32, 32), Rect2(64, 192, 32, 32), Rect2(96, 192, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_qlg0r"]
-resource_name = "move_yellow"
-length = 0.75
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player animator/Sprite2D:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Rect2(0, 160, 32, 32), Rect2(32, 160, 32, 32), Rect2(64, 160, 32, 32), Rect2(96, 160, 32, 32)]
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(0, 0, 32, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qhqgy"]
 _data = {
 &"RESET": SubResource("Animation_qhqgy"),
-&"dead": SubResource("Animation_ur7pv"),
-&"idle_green": SubResource("Animation_g2els"),
-&"idle_red": SubResource("Animation_smehm"),
-&"idle_yellow": SubResource("Animation_fjrip"),
-&"move_green": SubResource("Animation_dqkch"),
-&"move_red": SubResource("Animation_tuyoq"),
-&"move_yellow": SubResource("Animation_qlg0r")
+&"death": SubResource("Animation_dqkch"),
+&"idle": SubResource("Animation_g2els"),
+&"left": SubResource("Animation_qlg0r"),
+&"right": SubResource("Animation_tuyoq")
 }
 
-[node name="player" type="CharacterBody2D"]
-z_index = 1
+[node name="player" type="CharacterBody2D" unique_id=1377064126]
 script = ExtResource("1_g2els")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820738323]
 position = Vector2(0, -15)
 scale = Vector2(0.72000027, 1)
 shape = SubResource("CapsuleShape2D_g2els")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1091487405]
 
-[node name="Player animator" type="Node2D" parent="." node_paths=PackedStringArray("player_control", "animation_player", "sprite")]
-script = ExtResource("2_qhqgy")
-player_control = NodePath("..")
-animation_player = NodePath("AnimationPlayer")
-sprite = NodePath("Sprite2D")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player animator"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_qhqgy")
-}
-
-[node name="Sprite2D" type="Sprite2D" parent="Player animator"]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1204078581]
 position = Vector2(0, -16)
 texture = ExtResource("2_g2els")
 region_enabled = true
-region_rect = Rect2(0, 288, 32, 32)
+region_rect = Rect2(0, 256, 32, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=244798364]
+libraries/ = SubResource("AnimationLibrary_qhqgy")
