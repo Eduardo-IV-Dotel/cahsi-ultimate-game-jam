@@ -15,11 +15,7 @@ func _on_exit_pressed() -> void:
 
 
 func _on_start_pressed() -> void:
-	print("Start")
 	get_tree().change_scene_to_file("res://scenes/areas/area_1.tscn")
-	pass # Replace with function body.
 
-
-func _on_controls_pressed() -> void:
-	print("controls")
-	pass # Replace with function body.
+func _on_exit_pressed() -> void:
+	get_tree().quit()

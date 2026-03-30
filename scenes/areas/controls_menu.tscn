@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bmbje5uge28de"]
+
+[ext_resource type="Script" uid="uid://cf08kd8fxl3uv" path="res://scenes/areas/controls_menu.gd" id="1_74eui"]
+
+[node name="ControlsMenu" type="Control" unique_id=1667791759]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="." unique_id=503220427]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 117.0
+offset_right = 619.0
+offset_bottom = 148.0
+text = "Back"
+script = ExtResource("1_74eui")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=870570211]
+modulate = Color(1, 1, 1, 0.99607843)
+self_modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 444.0
+offset_top = 201.0
+offset_right = 682.0
+offset_bottom = 399.0
+text = "         WASD - Movement
+
+         Space - Jump
+
+         Shift - Dash
+         
+"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_back_button_pressed"]
