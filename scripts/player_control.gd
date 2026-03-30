@@ -6,21 +6,10 @@ const Dash_Duration = 0.2
 const Dash_Cooldown = 1.0
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-var direction = 0
-var max_health = 100.0
-var health = 100.0
-var decay = 5.0
-var is_dead := false
-var is_charging := false
-var is_dashing := false
-var can_dash := true
-var dash_dir := Vector2.ZERO
-
-func die():
-	print("Ya dead")
-	is_dead = true
-func charging():
-	is_charging = true
+var battery := 100.0
+var max_battery := 100.0
+var drain_rate := 10.0   
+var recharge_rate := 5.0 
 
 
 	
@@ -84,9 +73,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 		
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)	
-		
-		
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	batery -= drain_rate * delta
+	battery = clamp(battery, 0, max_battery)
 	move_and_slide()
 	
 	
