@@ -29,15 +29,15 @@ var accepting_input: bool = false
 
 # ─── Node refs ────────────────────────────────────────────────
 @onready var buttons := {
-	"red":    $ButtonGrid/RedButton,
-	"green":  $ButtonGrid/GreenButton,
-	"blue":   $ButtonGrid/BlueButton,
-	"yellow": $ButtonGrid/YellowButton
+	"red":    $CenterContainer/ButtonGrid/RedButton,
+	"green":  $CenterContainer/ButtonGrid/GreenButton,
+	"blue":   $CenterContainer/ButtonGrid/BlueButton,
+	"yellow": $CenterContainer/ButtonGrid/YellowButton
 }
 @onready var score_label      : Label   = $HUD/ScoreLabel
 @onready var turn_label       : Label   = $HUD/TurnLabel
 @onready var high_score_label : Label   = $HUD/HighScoreLabel
-@onready var retry_screen     : Control = $RetryScreen
+
 
 # Signal emitted when the player clicks a color button
 signal color_selected(color: String)
@@ -47,8 +47,8 @@ func _ready() -> void:
 	# Set all buttons to their dim (off) color at start
 	for color in COLORS:
 		buttons[color].color = COLOR_OFF[color]
-	retry_screen.hide()
-	game_loop()
+	_connect_buttons()
+	
 
 # ─── Button input ─────────────────────────────────────────────
 # Connect each ColorRect's gui_input signal to this function,
@@ -58,7 +58,8 @@ func _ready() -> void:
 
 func _connect_buttons() -> void:
 	for color in COLORS:
-		buttons[color].gui_input.connect(_on_button_input.bind(color))
+		if not buttons[color].gui_input.is_connected(_on_button_input):
+			buttons[color].gui_input.connect(_on_button_input.bind(color))
 
 func _on_button_input(event: InputEvent, color: String) -> void:
 	if event is InputEventMouseButton:
@@ -70,22 +71,22 @@ func _on_button_input(event: InputEvent, color: String) -> void:
 func update_hud() -> void:
 	score_label.text      = "Score: %d" % score
 	turn_label.text       = "Your Turn" if players_turn else "CPU's Turn"
-	high_score_label.text = "Best: %d"  % read_high_score()
+	#high_score_label.text = "Best: %d"  % read_high_score()
 
 # ─── High Score (uses user:// so it persists on device) ───────
-func read_high_score() -> int:
-	if not FileAccess.file_exists(HIGH_SCORE_PATH):
-		return 0
-	var file := FileAccess.open(HIGH_SCORE_PATH, FileAccess.READ)
-	var val  := file.get_line().strip_edges().to_int()
-	file.close()
-	return val
-
-func write_high_score(new_score: int) -> void:
-	if new_score > read_high_score():
-		var file := FileAccess.open(HIGH_SCORE_PATH, FileAccess.WRITE)
-		file.store_line(str(new_score))
-		file.close()
+#func read_high_score() -> int:
+	#if not FileAccess.file_exists(HIGH_SCORE_PATH):
+		#return 0
+	#var file := FileAccess.open(HIGH_SCORE_PATH, FileAccess.READ)
+	#var val  := file.get_line().strip_edges().to_int()
+	#file.close()
+	#return val
+#
+#func write_high_score(new_score: int) -> void:
+	#if new_score > read_high_score():
+		#var file := FileAccess.open(HIGH_SCORE_PATH, FileAccess.WRITE)
+		#file.store_line(str(new_score))
+		#file.close()
 
 # ─── Button flash ─────────────────────────────────────────────
 func flash_button(color: String) -> void:
@@ -108,14 +109,11 @@ func repeat_sequence() -> void:
 		await flash_button(color)
 
 func cpu_turn() -> void:
-	# Pick a random color; retry once if it's the same as the last
 	var choice: String = COLORS[randi() % COLORS.size()]
-	if cpu_sequence.size() > 0:
+	if cpu_sequence.size() > 0 and cpu_sequence[-1] == choice:
 		choice = COLORS[randi() % COLORS.size()]
-
 	cpu_sequence.append(choice)
-	await flash_button(choice)
-
+	# NO flash here — repeat_sequence handles it
 	players_turn = true
 	update_hud()
 
@@ -124,12 +122,12 @@ func player_turn() -> bool:
 	accepting_input = true
 
 	while player_sequence.size() < cpu_sequence.size():
-		# Wait here until the player emits color_selected
 		var chosen: String = await color_selected
+		accepting_input = false  # ← disable during flash
 		await flash_button(chosen)
+		accepting_input = true   # ← re-enable after
 		player_sequence.append(chosen)
 
-		# Check what the player has typed so far
 		if not _sequence_valid():
 			accepting_input = false
 			return false
@@ -143,40 +141,30 @@ func _sequence_valid() -> bool:
 			return false
 	return true
 
-# ─── Game flow ────────────────────────────────────────────────
-func game_loop() -> void:
+
+
+func game_loop(difficulty: int = 4) -> bool:
 	cpu_sequence.clear()
 	player_sequence.clear()
 	score        = 0
 	players_turn = false
-	_connect_buttons()
 	update_hud()
-	var difficulty = 4
-	
 
-	while true:
-		await repeat_sequence()
+	while difficulty > 0:
+		cpu_turn()           # ← pick color first
+		await repeat_sequence()  # ← then show the whole sequence
 		await get_tree().create_timer(0.3).timeout
-		await cpu_turn()
 
 		var success: bool = await player_turn()
 
 		if not success:
-			game_over()
-			return  # stops the loop; retry restarts game_loop()
+			return false
 
 		score += 1
 		update_hud()
 		await get_tree().create_timer(1.0).timeout
 		difficulty -= 1
-
-
-func game_over() -> void:
-	write_high_score(score)
-	print("Game Over! Score: %d | Best: %d" % [score, read_high_score()])
-	retry_screen.show()
-
-# Called by the RetryButton's pressed signal
-func _on_retry_pressed() -> void:
-	retry_screen.hide()
-	game_loop()
+	return true
+	#write_high_score(score)
+	#print("Game Over! Score: %d | Best: %d" % [score, read_high_score()])
+	#retry_screen.show()

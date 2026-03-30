@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=4 uid="uid://cyr1ajjnmsibn"]
+[gd_scene load_steps=7 format=4 uid="uid://cyr1ajjnmsibn"]
 
 [ext_resource type="Script" uid="uid://cubkw3cvcu2yd" path="res://scripts/SimonSays.gd" id="1_u52ul"]
 [ext_resource type="AudioStream" uid="uid://dxds2ws2l3h84" path="res://audios/red.ogg" id="2_0b4ue"]
@@ -23,68 +23,76 @@ tags = {
 "vendor_id": "[0][0][0][0]"
 }
 
-[node name="SimonSays" type="Control" unique_id=157546535]
+[node name="SimonSays" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -224.0
+offset_right = -201.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_u52ul")
 
-[node name="Background" type="ColorRect" parent="." unique_id=6308204]
+[node name="Background" type="ColorRect" parent="Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ButtonGrid" type="GridContainer" parent="." unique_id=1490373773]
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 0
 offset_right = 464.0
 offset_bottom = 464.0
+
+[node name="ButtonGrid" type="GridContainer" parent="Control/CenterContainer"]
+layout_mode = 2
 columns = 2
 
-[node name="GreenButton" type="ColorRect" parent="ButtonGrid" unique_id=474052627]
+[node name="GreenButton" type="ColorRect" parent="Control/CenterContainer/ButtonGrid"]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 2
 
-[node name="Sound" type="AudioStreamPlayer" parent="ButtonGrid/GreenButton" unique_id=2113211197]
+[node name="Sound" type="AudioStreamPlayer" parent="Control/CenterContainer/ButtonGrid/GreenButton"]
 stream = SubResource("AudioStreamOggVorbis_n6hdu")
 
-[node name="RedButton" type="ColorRect" parent="ButtonGrid" unique_id=647085651]
+[node name="RedButton" type="ColorRect" parent="Control/CenterContainer/ButtonGrid"]
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 
-[node name="Sound" type="AudioStreamPlayer" parent="ButtonGrid/RedButton" unique_id=869457923]
+[node name="Sound" type="AudioStreamPlayer" parent="Control/CenterContainer/ButtonGrid/RedButton"]
 stream = ExtResource("2_0b4ue")
 
-[node name="BlueButton" type="ColorRect" parent="ButtonGrid" unique_id=1452294409]
+[node name="BlueButton" type="ColorRect" parent="Control/CenterContainer/ButtonGrid"]
 custom_minimum_size = Vector2(230, 0.23)
 layout_mode = 2
 
-[node name="Sound" type="AudioStreamPlayer" parent="ButtonGrid/BlueButton" unique_id=1136720932]
+[node name="Sound" type="AudioStreamPlayer" parent="Control/CenterContainer/ButtonGrid/BlueButton"]
 stream = ExtResource("3_f2txt")
 
-[node name="YellowButton" type="ColorRect" parent="ButtonGrid" unique_id=643184487]
+[node name="YellowButton" type="ColorRect" parent="Control/CenterContainer/ButtonGrid"]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 2
 
-[node name="Sound" type="AudioStreamPlayer" parent="ButtonGrid/YellowButton" unique_id=17022260]
+[node name="Sound" type="AudioStreamPlayer" parent="Control/CenterContainer/ButtonGrid/YellowButton"]
 stream = ExtResource("4_1ainy")
 
-[node name="HUD" type="HBoxContainer" parent="." unique_id=467316041]
+[node name="HUD" type="HBoxContainer" parent="Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ScoreLabel" type="Label" parent="HUD" unique_id=1565132608]
+[node name="ScoreLabel" type="Label" parent="Control/HUD"]
 layout_mode = 2
 
-[node name="TurnLabel" type="Label" parent="HUD" unique_id=1224210587]
+[node name="TurnLabel" type="Label" parent="Control/HUD"]
 layout_mode = 2
 
-[node name="HighScoreLabel" type="Label" parent="HUD" unique_id=1723997342]
+[node name="HighScoreLabel" type="Label" parent="Control/HUD"]
 layout_mode = 2
-
-[node name="RetryScreen" type="Control" parent="." unique_id=1353425813]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
