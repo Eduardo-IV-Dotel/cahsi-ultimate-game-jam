@@ -91,6 +91,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 func start_dash():
+	health -= 15
 	is_dashing = true
 	can_dash = false
 	var input_dir = Input.get_vector("left", "right", "up", "down")
