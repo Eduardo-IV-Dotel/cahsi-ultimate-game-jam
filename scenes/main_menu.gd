@@ -9,9 +9,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_exit_pressed() -> void:
-	print("exit")
-	get_tree().quit()
 
 
 func _on_start_pressed() -> void:
