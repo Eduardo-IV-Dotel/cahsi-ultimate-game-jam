@@ -19,6 +19,7 @@ var dash_dir := Vector2.ZERO
 func die():
 	print("Ya dead")
 	is_dead = true
+	get_tree().change_scene_to_file("res://scenes/areas/dead_screen.tscn")
 func charging():
 	is_charging = true
 
