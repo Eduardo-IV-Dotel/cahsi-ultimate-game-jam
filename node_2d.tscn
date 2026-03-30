@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://mhal0xhdaau7"]
+
+[ext_resource type="Script" uid="uid://d0mj1ok7ewem" path="res://scripts/ENDGOAL.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://d0gfg80kxs2sr" path="res://sprite/charger.png" id="2_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(20, 30)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_0e48y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_0hol4")
