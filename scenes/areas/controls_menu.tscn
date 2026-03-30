@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://bmbje5uge28de"]
+[gd_scene load_steps=2 format=3 uid="uid://b6uchcaqj1ord"]
 
-[ext_resource type="Script" uid="uid://cf08kd8fxl3uv" path="res://scenes/areas/controls_menu.gd" id="1_74eui"]
+[ext_resource type="Script" path="res://scenes/areas/controls_menu.gd" id="1_74eui"]
 
-[node name="ControlsMenu" type="Control" unique_id=1667791759]
+[node name="ControlsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="." unique_id=503220427]
+[node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 526.0
 offset_top = 117.0
@@ -19,15 +19,17 @@ offset_bottom = 148.0
 text = "Back"
 script = ExtResource("1_74eui")
 
-[node name="TextEdit" type="TextEdit" parent="." unique_id=870570211]
-modulate = Color(1, 1, 1, 0.99607843)
-self_modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
-layout_mode = 0
-offset_left = 444.0
-offset_top = 201.0
-offset_right = 682.0
-offset_bottom = 399.0
+[node name="TextEdit2" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50200003
+anchor_top = 0.41700003
+anchor_right = 0.50200003
+anchor_bottom = 0.41700003
+offset_left = -178.30402
+offset_top = -104.216
+offset_right = 175.69598
+offset_bottom = 105.784
 text = "         WASD - Movement
 
          Space - Jump
