@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://di3bshe1v0h7g"]
+[gd_scene load_steps=9 format=4 uid="uid://dx2ho1p06rkbf"]
 
 [ext_resource type="Texture2D" uid="uid://bi2fe2d2hiqrx" path="res://sprite/monochrome_tilemap_packed.png" id="1_t3gc0"]
-[ext_resource type="Script" uid="uid://cv0nekhktilcf" path="res://scenes/areas/character_body_2d.gd" id="2_3maxa"]
+[ext_resource type="Script" path="res://scenes/areas/character_body_2d.gd" id="2_3maxa"]
 [ext_resource type="Texture2D" uid="uid://b2cfhp2xnxsg2" path="res://sprite/enemy_1.png" id="2_l2cun"]
 [ext_resource type="PackedScene" uid="uid://c6tbujs1sbyh2" path="res://scenes/player.tscn" id="3_l2cun"]
-[ext_resource type="Script" uid="uid://d3ue6j0usarn1" path="res://scenes/areas/character_body_2d_8.gd" id="4_hmbeh"]
+[ext_resource type="Script" path="res://scenes/areas/character_body_2d_8.gd" id="4_hmbeh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_shbsv"]
 texture = ExtResource("1_t3gc0")
